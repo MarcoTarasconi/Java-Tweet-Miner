@@ -1,0 +1,20 @@
+This program mines tons of data from twitter using Java and Redis (noSQL).
+
+It listens to a stream of tweets and saves users'names and hashtags in a Redis database.
+Some mining mathods provide informations about hidden social networks of #hashtags or @mentions 
+and about users or hashtags similarity.
+
+To run it you need to complete the file twitter4j.properties with your Twitter OAuth keys.
+
+You also need to include:
+
+- twitter4j-core-2.2.2.jar
+- twitter4j-stream-2.2.2.jar
+- jedis-2.0.0.jar
+- commons-pool-1.5.6.jar
+
+or later versions.
+
+Contributors
+------------
+Enrico Franchi < rik0 at github.com >

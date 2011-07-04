@@ -31,14 +31,16 @@ import twitter4j.UserMentionEntity;
 
 /**
  * This interface class defines an update method for a generic database
- *
+ * 
  * @author Marco Tarasconi
  */
 public interface Backend {
 
 	/**
-	 * Updates the database with the name of the user that published a tweet and the hashtags and the mentions that he used
+	 * Updates the database with the name of the user that published a tweet and
+	 * the hashtags and the mentions that he used
 	 */
-	public void update(String username, HashtagEntity[] hashtag, UserMentionEntity[] mentions);
-	
+	public void update(String username, HashtagEntity[] hashtag,
+			UserMentionEntity[] mentions);
+
 }

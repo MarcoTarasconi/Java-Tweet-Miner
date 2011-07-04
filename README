@@ -4,7 +4,7 @@ It listens to a stream of tweets and saves users'names and hashtags in a Redis d
 Some mining mathods provide informations about hidden social networks of #hashtags or @mentions 
 and about users or hashtags similarity.
 
-To run it you need to complete the file twitter4j.properties with your Twitter OAuth keys.
+To run it you need to complete the file src/twitter4j.properties with your Twitter OAuth keys.
 
 You also need to include:
 

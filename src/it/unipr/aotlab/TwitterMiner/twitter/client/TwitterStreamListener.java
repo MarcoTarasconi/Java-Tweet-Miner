@@ -35,16 +35,16 @@ import twitter4j.UserMentionEntity;
 
 /**
  * This class listen for events on TwitterStream
- *
+ * 
  * @author Marco Tarasconi
  */
 public class TwitterStreamListener implements StatusListener {
-	
+
 	private static HashtagEntity hashtag[] = null;
 	private static UserMentionEntity mentions[] = null;
 	private RedisBackend redisDB = null;
-	
-	public TwitterStreamListener(RedisBackend redisDB){
+
+	public TwitterStreamListener(RedisBackend redisDB) {
 		this.redisDB = redisDB;
 	}
 
@@ -54,32 +54,36 @@ public class TwitterStreamListener implements StatusListener {
 	 */
 	@Override
 	public void onStatus(Status status) {
-		
-        System.out.println("@" + status.getUser().getScreenName() + " - " + status.getText());
 
-        hashtag = status.getHashtagEntities();
-        mentions = status.getUserMentionEntities();
+		System.out.println("@" + status.getUser().getScreenName() + " - "
+				+ status.getText());
 
-        redisDB.update(status.getUser().getScreenName(), hashtag, mentions);
-    }
+		hashtag = status.getHashtagEntities();
+		mentions = status.getUserMentionEntities();
 
-	@Override
-    public void onDeletionNotice(StatusDeletionNotice statusDeletionNotice) {
-        System.out.println("Got a status deletion notice id:" + statusDeletionNotice.getStatusId());
-    }
+		redisDB.update(status.getUser().getScreenName(), hashtag, mentions);
+	}
 
 	@Override
-    public void onTrackLimitationNotice(int numberOfLimitedStatuses) {
-        System.out.println("Got track limitation notice:" + numberOfLimitedStatuses);
-    }
+	public void onDeletionNotice(StatusDeletionNotice statusDeletionNotice) {
+		System.out.println("Got a status deletion notice id:"
+				+ statusDeletionNotice.getStatusId());
+	}
 
 	@Override
-    public void onScrubGeo(long userId, long upToStatusId) {
-        System.out.println("Got scrub_geo event userId:" + userId + " upToStatusId:" + upToStatusId);
-    }
+	public void onTrackLimitationNotice(int numberOfLimitedStatuses) {
+		System.out.println("Got track limitation notice:"
+				+ numberOfLimitedStatuses);
+	}
 
 	@Override
-    public void onException(Exception ex) {
-        ex.printStackTrace();
-    }
+	public void onScrubGeo(long userId, long upToStatusId) {
+		System.out.println("Got scrub_geo event userId:" + userId
+				+ " upToStatusId:" + upToStatusId);
+	}
+
+	@Override
+	public void onException(Exception ex) {
+		ex.printStackTrace();
+	}
 }

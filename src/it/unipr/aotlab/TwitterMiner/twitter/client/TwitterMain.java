@@ -35,7 +35,8 @@ import twitter4j.TwitterStream;
 import twitter4j.TwitterStreamFactory;
 
 /**
- * This class connects to Twitter and gets a stream of tweets about some chosen topics
+ * This class connects to Twitter and gets a stream of tweets about some chosen
+ * topics
  * 
  * @author Marco Tarasconi
  */
@@ -45,31 +46,32 @@ public class TwitterMain {
 	private static RedisBackend redisDB = null;
 
 	/**
-	 * The args[] are used to filter twitter stream (example: "#twitter #facebook #social #redis").
-	 * If no filter is specified, the default "#twitter" filter is used
+	 * The args[] are used to filter twitter stream (example:
+	 * "#twitter #facebook #social #redis"). If no filter is specified, the
+	 * default "#twitter" filter is used
 	 * 
 	 * @param args
-	 * @throws FileNotFoundException 
-	 * @throws TwitterException 
+	 * @throws FileNotFoundException
+	 * @throws TwitterException
 	 */
-	public static void main(String[] args) throws FileNotFoundException{
-		
+	public static void main(String[] args) throws FileNotFoundException {
+
 		redisDB = new RedisBackend();
-		listener = new TwitterStreamListener(redisDB); 
-		
-		/**Number of old tweets to catch before starting to listen live stream*/
-		int count = 0; 
-		
-        TwitterStream twitterStream = new TwitterStreamFactory().getInstance();
-        twitterStream.addListener(listener);
-        FilterQuery filterQuery = new FilterQuery();
-        filterQuery.count(count);
-        if(args.length == 0){
-        	args = new String[1];
-        	args[0]="#twitter";
-        }
-        filterQuery.track(args);
-        twitterStream.filter(filterQuery);        
+		listener = new TwitterStreamListener(redisDB);
+
+		/** Number of old tweets to catch before starting to listen live stream */
+		int count = 0;
+
+		TwitterStream twitterStream = new TwitterStreamFactory().getInstance();
+		twitterStream.addListener(listener);
+		FilterQuery filterQuery = new FilterQuery();
+		filterQuery.count(count);
+		if (args.length == 0) {
+			args = new String[1];
+			args[0] = "#twitter";
+		}
+		filterQuery.track(args);
+		twitterStream.filter(filterQuery);
 	}
-	
+
 }
